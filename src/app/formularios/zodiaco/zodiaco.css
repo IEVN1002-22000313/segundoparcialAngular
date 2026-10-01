@@ -1,0 +1,127 @@
+/* Contenedor principal que divide en dos mitades */
+
+.contenedor-principal {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 90%;
+  max-width: 950px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 30px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  font-family: Arial, sans-serif;
+}
+
+/* Ancho equitativo para ambas columnas */
+.columna-izquierda,
+.columna-derecha {
+  flex: 1;
+  padding: 10px 20px;
+}
+
+/* Línea divisoria vertical central */
+.divisor-vertical {
+  width: 2px;
+  background-color: #000000;
+  margin: 0 10px;
+}
+
+/* Estilos de los campos del formulario */
+.campo {
+  margin-bottom: 10px;
+}
+
+.campo label,
+.sub-campo label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 3px;
+}
+
+.campo input[type="text"],
+.sub-campo input[type="number"] {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #333;
+  box-sizing: border-box;
+}
+
+/* Agrupación de la fecha en línea */
+.fecha-grupo {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.sub-campo {
+  flex: 1;
+}
+
+.sexo-grupo {
+  margin-bottom: 20px;
+}
+
+/* Botón estilo clásico  */
+.btn-imprimir {
+  background-color: #ffffff;
+  color: #000000;
+  border: 2px solid #000000;
+  padding: 6px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px #000;
+}
+
+.btn-imprimir:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+/* Estilos de la sección de resultados (Derecha) */
+.columna-derecha {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.columna-derecha h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.destacado {
+  font-style: italic;
+  font-weight: bold;
+}
+
+.texto-edad {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+/* Círculo azul  */
+.circulo-imagen {
+  width: 130px;
+  height: 130px;
+  background-color: #2b3990; /* Azul característico del maquetado */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.circulo-imagen img {
+  width: 75%;
+  height: auto;
+}
+
+.placeholder-resultado {
+  color: #666;
+  font-style: italic;
+}

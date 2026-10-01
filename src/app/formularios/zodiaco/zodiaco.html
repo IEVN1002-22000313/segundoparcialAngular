@@ -1,0 +1,90 @@
+<div class="contenedor-principal">
+  <!-- COlumna izquierda Formulario -->
+  <div class="columna-izquierda">
+    <h2>Datos Personales</h2>
+
+    <div class="campo">
+      <label>Nombre</label>
+      <input type="text" [(ngModel)]="nombre" placeholder="Carlos" />
+    </div>
+
+    <div class="campo">
+      <label>Apellido Paterno</label>
+      <input type="text" [(ngModel)]="apaterno" placeholder="López" />
+    </div>
+
+    <div class="campo">
+      <label>Apellido Materno</label>
+      <input type="text" [(ngModel)]="amaterno" placeholder="Hernandez" />
+    </div>
+
+    <h3>Fecha de nacimiento</h3>
+    <div class="fecha-grupo">
+      <div class="sub-campo">
+        <label>Dia</label
+        ><!-- el imput type number coloca flechas para seleccionar el numero-->
+        <input type="number" [(ngModel)]="dia" placeholder="Dia" />
+      </div>
+      <div class="sub-campo">
+        <label>Mes</label>
+        <input type="number" [(ngModel)]="mes" placeholder="Mes" />
+      </div>
+      <div class="sub-campo">
+        <label>Año</label>
+        <input type="number" [(ngModel)]="anioNacimiento" placeholder="Año" />
+      </div>
+    </div>
+
+    <h3>Sexo</h3>
+    <div class="sexo-grupo">
+      <label>
+        <input type="radio" name="sexo" value="Masculino" [(ngModel)]="sexo" />
+        Masculino
+      </label>
+      <br />
+      <label>
+        <input type="radio" name="sexo" value="Femenino" [(ngModel)]="sexo" />
+        Femenino
+      </label>
+    </div>
+
+    <!-- Botón paraImprimir -->
+    <button class="btn-imprimir" (click)="calcularSigno()">imprimir</button>
+  </div>
+
+  <!-- LÍNEA DIVISOR VERTICAL -->
+  <div class="divisor-vertical"></div>
+
+  <!-- COlumna derecha Resultado -->
+  <div class="columna-derecha">
+    @if (mostrarResultado) {
+    <div class="resultado-contenido">
+      <h2>
+        Hola
+        <span class="destacado"
+          >{{ nombre }} {{ apaterno }} {{ amaterno }}</span
+        >
+      </h2>
+
+      <p class="texto-edad">Tienes <strong>{{ edad }}</strong> años</p>
+
+      <p>tu signo zodiacal</p>
+
+      <div class="signo-contenedor">
+        <p>Es <strong>{{ animalZodiaco }}</strong></p>
+        <!-- Círculo azul  -->
+        <div class="circulo-imagen">
+          <img [src]="rutaImagen" alt="Signo zodiacal {{ animalZodiaco }}" />
+        </div>
+      </div>
+    </div>
+    } @else {
+    <div class="placeholder-resultado">
+      <p>
+        Llena tus datos a la izquierda y haz clic en
+        <strong>imprimir</strong> para ver tu resultado aquí.
+      </p>
+    </div>
+    }
+  </div>
+</div>
