@@ -46,18 +46,20 @@ export class AppComponent implements OnInit {
   }
 }
 */
-import { Component, OnInit } from "@angular/core";
-import { RouterOutlet } from "@angular/router";
-import { initFlowbite } from "flowbite";
-
+import { Component, signal } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { OnInit } from '@angular/core';
+import { initFlowbite } from 'flowbite';
+import { Navbar } from './navbar/navbar'; //tenemos que importar el navbar aqui tambien
+import { Usuarios } from './formularios/usuarios/usuarios';
 @Component({
-  selector: "app-root",
-  imports: [RouterOutlet],
-  templateUrl: "./app.html",
-  styleUrl: "./app.css",
+  selector: 'app-root',
+  imports: [RouterOutlet, Navbar, Usuarios], //eferenciamos al nav
+  templateUrl: './app.html',
+  styleUrl: './app.css',
 })
 export class AppComponent implements OnInit {
-  title = "segundoparcialAngular";
+  title = 'segundoparcialAngular';
 
   ngOnInit(): void {
     initFlowbite();
