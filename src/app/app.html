@@ -1,6 +1,14 @@
-<!--<app-zodiaco></app-zodiaco>-->
-<!--IMPORTANTE !!! OBLIGATORIA referencia de mi app zodiaco-->
+<!--<router-outlet />Esta   ruta siempre se queda-->
 
-<app-navbar></app-navbar><!--referenciamos el nav aqui -->
-<router-outlet /><!--Esta   ruta siempre se queda-->
+<!--
 <app-usuarios></app-usuarios>
+<app-zodiaco></app-zodiaco>
+-->
+<!-- Se muestra el menú de navegación que importaste en app.ts -->
+<app-navbar></app-navbar>
+
+<div class="mt-20">
+  <!-- Margen superior para que el navbar no lo tape -->
+  <!-- Aquí Angular inyectará automáticamente Zodiaco o Usuarios cuando hagas clic en el menú -->
+  <router-outlet></router-outlet><!--Esta   ruta siempre se queda-->
+</div>

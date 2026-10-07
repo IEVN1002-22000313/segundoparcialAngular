@@ -1,9 +1,5 @@
-import { bootstrapApplication } from "@angular/platform-browser";
-import { appConfig } from "./app/app.config";
-//import { App } from './app/app';
-import { AppComponent } from "./app/app";
+import { bootstrapApplication } from '@angular/platform-browser';
+import { appConfig } from './app/app.config';
+import { AppComponent } from './app/app';
 
-bootstrapApplication(AppComponent, appConfig).catch((err) =>
-  console.error(err),
-); //cambie el nombre de
-//app por AppComponent
+bootstrapApplication(AppComponent, appConfig).catch((err) => console.error(err));
