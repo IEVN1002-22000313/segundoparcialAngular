@@ -23,6 +23,15 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./escuela/lista-alumnos/lista-alumnos').then((c) => c.ListaAlumnos), //SE MANDA llamar como el nombre de la clase
       },
+      {
+        path: 'cinepolis', // colocamos la ruta de cinepolis (hija de la escuela) y colocamos su clase
+        loadComponent: () => import('./escuela/cinepolis/cinepolis').then((c) => c.Cinepolis), //SE MANDA llamar como el nombre de la clase
+      },
+      {
+        path: 'ver-registro', // colocamos la ruta de cinepolis (hija de la escuela) y colocamos su clase
+        loadComponent: () =>
+          import('./escuela/ver-registro/ver-registro').then((c) => c.VerRegistro), //SE MANDA llamar como el nombre de la clase
+      },
     ],
   },
   {

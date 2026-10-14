@@ -29,7 +29,6 @@ export class Cinepolis implements OnInit {
     valorPagar: 0,
   };
 
-  ventas: Icinepolis[] = [];
   error: string = '';
 
   constructor(private router: Router) {}
@@ -41,16 +40,19 @@ export class Cinepolis implements OnInit {
       tarjetaCineco: new FormControl('no'),
       cantidadBoletos: new FormControl(''),
     });
-    this.cargarVentas();
   }
 
-  cargarVentas(): void {
+  /** Lee el array actual de localStorage (o array vacío si no existe) */
+  private leerVentas(): Icinepolis[] {
     const data = localStorage.getItem(STORAGE_KEY);
-    this.ventas = data ? JSON.parse(data) : [];
+    return data ? JSON.parse(data) : [];
   }
 
-  guardarVentas(): void {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(this.ventas));
+  /** Agrega UNA venta al array guardado en localStorage */
+  private agregarVenta(venta: Icinepolis): void {
+    const ventas = this.leerVentas();
+    ventas.push(venta);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(ventas));
   }
 
   procesar(): void {
@@ -110,10 +112,9 @@ export class Cinepolis implements OnInit {
     };
 
     // Guardar en localStorage
-    this.ventas.push(venta);
-    this.guardarVentas();
+    this.agregarVenta(venta);
 
-    // Mostrar en pantalla
+    // Mostrar en pantalla (solo el resumen individual)
     this.nuevoUsuario = venta;
 
     // Limpiar formulario

@@ -6,7 +6,7 @@ import { materialize } from 'rxjs';
 
 @Component({
   selector: 'app-lista-alumnos',
-  imports: [FormsModule, ReactiveFormsModule, CommonModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule], //importante usar commonMOdule
   templateUrl: './lista-alumnos.html',
   styleUrl: './lista-alumnos.css',
 })
@@ -33,6 +33,7 @@ export class ListaAlumnos implements OnInit {
   }
 
   agregarAlumno(): void {
+    //editar un registro o hacer uno nuevo
     if (
       this.nuevoAlumno.matricula === '' ||
       this.nuevoAlumno.nombre === '' ||
@@ -100,6 +101,14 @@ export class ListaAlumnos implements OnInit {
       correo: '',
       materia: '',
     };
+    this.formulario.patchValue({
+      //nueva parte
+      matricula: this.nuevoAlumno.matricula,
+      nombre: this.nuevoAlumno.nombre,
+      correo: this.nuevoAlumno.correo,
+      materia: this.nuevoAlumno.materia,
+    });
+
     this.indiceEdicion = -1;
   }
 }
