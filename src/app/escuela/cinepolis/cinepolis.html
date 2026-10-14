@@ -1,0 +1,156 @@
+<div class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow">
+  <h1 class="text-3xl font-bold text-gray-900 mb-6 text-center">Cinépolis</h1>
+
+  <form [formGroup]="formulario" (ngSubmit)="procesar()">
+    <!-- Nombre -->
+    <div class="mb-5">
+      <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900">Nombre</label>
+      <input
+        type="text"
+        id="nombre"
+        formControlName="nombre"
+        required
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        placeholder="Nombre del comprador"
+      />
+    </div>
+
+    <!-- Cantidad Compradores -->
+    <div class="mb-5">
+      <label for="cantidadCompradores" class="block mb-2 text-sm font-medium text-gray-900">
+        Cantidad Compradores
+      </label>
+      <input
+        type="number"
+        id="cantidadCompradores"
+        formControlName="cantidadCompradores"
+        min="1"
+        required
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        placeholder="¿Cuántos compradores son?"
+      />
+    </div>
+
+    <!-- Tarjeta CINECO -->
+    <div class="mb-5">
+      <span class="block mb-2 text-sm font-medium text-gray-900">Tarjeta CINECO</span>
+      <div class="flex gap-6">
+        <label class="inline-flex items-center">
+          <input
+            type="radio"
+            value="si"
+            formControlName="tarjetaCineco"
+            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
+          />
+          <span class="ml-2 text-sm text-gray-900">Sí</span>
+        </label>
+        <label class="inline-flex items-center">
+          <input
+            type="radio"
+            value="no"
+            formControlName="tarjetaCineco"
+            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
+          />
+          <span class="ml-2 text-sm text-gray-900">No</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Cantidad Boletos -->
+    <div class="mb-5">
+      <label for="cantidadBoletos" class="block mb-2 text-sm font-medium text-gray-900">
+        Cantidad de Boletos
+      </label>
+      <input
+        type="number"
+        id="cantidadBoletos"
+        formControlName="cantidadBoletos"
+        min="1"
+        required
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        placeholder="¿Cuántos boletos?"
+      />
+    </div>
+
+    <!-- Error -->
+    @if (error) {
+      <div class="mb-5 p-3 text-sm text-red-800 rounded-lg bg-red-50 border border-red-200">
+        {{ error }}
+      </div>
+    }
+
+    <!-- Botones -->
+    <div class="flex justify-end gap-3 mt-5">
+      <button
+        type="button"
+        (click)="reiniciar()"
+        class="text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5"
+      >
+        Salir
+      </button>
+      <button
+        type="submit"
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5"
+      >
+        Procesar
+      </button>
+    </div>
+  </form>
+
+  <!--RESUMEN-->
+  @if (nuevoUsuario.valorPagar > 0) {
+    <div class="mt-8 p-5 bg-blue-50 border border-blue-200 rounded-lg">
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Resumen de compra</h2>
+
+      <!-- Datos del cliente -->
+      <div class="mb-4 pb-4 border-b border-blue-200">
+        <p class="text-gray-800"><strong>Nombre:</strong> {{ nuevoUsuario.nombre }}</p>
+        <p class="text-gray-800">
+          <strong>Compradores:</strong> {{ nuevoUsuario.cantidadCompradores }}
+        </p>
+        <p class="text-gray-800"><strong>Boletos:</strong> {{ nuevoUsuario.cantidadBoletos }}</p>
+        <p class="text-gray-800">
+          <strong>Tarjeta CINECO:</strong>
+          {{ nuevoUsuario.tarjetaCineco ? 'Sí' : 'No' }}
+        </p>
+      </div>
+
+      <!-- Desglose de la compra -->
+      <div class="space-y-2">
+        <!-- Subtotal -->
+        <div class="flex justify-between text-gray-800">
+          <span>Subtotal ({{ nuevoUsuario.cantidadBoletos }} × $12,000):</span>
+          <span class="font-medium"> ${{ nuevoUsuario.subtotal | number: '1.0-0' }} </span>
+        </div>
+
+        <!-- Descuento por boletos (solo si aplica) -->
+        @if (nuevoUsuario.descuentoBoletos > 0) {
+          <div class="flex justify-between text-green-700">
+            <span>Descuento por boletos:</span>
+            <span class="font-medium">
+              −${{ nuevoUsuario.descuentoBoletos | number: '1.0-0' }}
+            </span>
+          </div>
+        }
+
+        <!-- Descuento CINECO (solo si aplica) -->
+        @if (nuevoUsuario.descuentoCineco > 0) {
+          <div class="flex justify-between text-green-700">
+            <span>Descuento Tarjeta CINECO:</span>
+            <span class="font-medium">
+              −${{ nuevoUsuario.descuentoCineco | number: '1.0-0' }}
+            </span>
+          </div>
+        }
+
+        <!-- Total -->
+        <div class="flex justify-between pt-3 mt-3 border-t-2 border-blue-300">
+          <span class="text-lg font-bold text-gray-900">Total a pagar:</span>
+          <span class="text-2xl font-bold text-blue-700">
+            ${{ nuevoUsuario.valorPagar | number: '1.0-0' }}
+          </span>
+        </div>
+      </div>
+    </div>
+  }
+</div>
